@@ -1,0 +1,16 @@
+﻿@{
+	ViewBag.Title = "Home Page";
+}
+
+<h2>Cookie info</h2>
+<p>
+	<span>@System.Environment.MachineName |
+		.formsauthcheck cookie :
+			@(Request.Cookies[".formsauthcheck"] != null ? Request.Cookies[".formsauthcheck"].Value : "none")</span>
+</p>
+<ul>
+	@foreach (var cookie in Request.Cookies.AllKeys.Select(x => Request.Cookies[x]).ToList())
+	{
+		<li>@cookie.Name, @cookie.Value, @cookie.Domain, @cookie.Path</li>
+	}
+</ul>
